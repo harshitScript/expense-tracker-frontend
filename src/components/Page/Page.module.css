@@ -1,0 +1,5 @@
+.page {
+    height: 90vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
