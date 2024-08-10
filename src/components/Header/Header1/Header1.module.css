@@ -1,0 +1,18 @@
+.header1 {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header1>span:first-child {
+    font-size: 2rem;
+}
+
+.header1>span:last-child {
+    font-size: 0.8rem;
+    color: grey;
+    font-weight: 600;
+}
