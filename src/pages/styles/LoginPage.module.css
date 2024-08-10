@@ -14,3 +14,22 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
+.login_header {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login_header>span:first-child {
+    font-size: 2rem;
+}
+
+.login_header>span:last-child {
+    font-size: 0.8rem;
+    color: grey;
+    font-weight: 600;
+}
