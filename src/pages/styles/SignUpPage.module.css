@@ -1,0 +1,35 @@
+.sign_up_page_outer {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 90vh;
+}
+
+.sign_up_section {
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.background_section {
+    background-image: url('../../assets/images/expense-tracker-background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.sign_up_header {
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sign_up_header>span:first-child {
+    font-size: 2rem;
+}
+
+.sign_up_header>span:last-child {
+    font-size: 0.8rem;
+    color: grey;
+    font-weight: 600;
+}
