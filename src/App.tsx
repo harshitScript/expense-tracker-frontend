@@ -5,7 +5,6 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 
 const App: React.FC = () => {
-  console.log("The app state =>", process.env.REACT_APP_STATE)
   return <>
     <Layout1>
       <Routes>
