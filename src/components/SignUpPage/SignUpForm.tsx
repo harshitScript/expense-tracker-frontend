@@ -7,28 +7,26 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../../validationSchema/signUpFormSchema";
 import { useNavigate } from "react-router-dom";
+import { User } from "../../models/user.model";
+import { signUpUserThunk } from "../../store/thunk/users.thunk";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
 
-interface FormFields {
-    firstName: string;
-    lastName: string;
-    phone: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-}
+
 
 const SignUpForm: React.FC = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { usersLoading } = useAppSelector(state => state.users);
     const [passwordVisible, togglePasswordVisibility] = useToggle(false);
     const [confirmPasswordVisible, toggleConfirmPasswordVisibility] = useToggle(false);
     const [passwordNotMatchedError, setPasswordNotMatchedError] = useState<boolean>(false);
-    const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<FormFields>({
+    const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<User>({
         mode: 'onChange',
         resolver: yupResolver(schema)
     })
     const onSubmit = (data: any) => {
-        console.log('On Submit =>', data)
-        navigate('/login?referer=sign-up', { replace: true })
+        dispatch(signUpUserThunk(data))
+        //navigate('/login?referer=sign-up', { replace: true })
     }
     const onSubmitError = (data: any) => {
         console.log('On Submit Error => ', data)
@@ -75,7 +73,7 @@ const SignUpForm: React.FC = () => {
                         </IconButton>
                     </InputAdornment>
                 }} />
-                <Button type="submit" disabled={!isValid} fullWidth variant="contained" className="secondary-button">Register</Button>
+                <Button type="submit" disabled={!isValid} fullWidth variant="contained" className="secondary-button" >Register</Button>
             </form>
             <p style={{ textAlign: 'center' }}>OR</p>
             <Button variant="contained" className="primary-button" fullWidth onClick={onLoginClick}>Login</Button>
