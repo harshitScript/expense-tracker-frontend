@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { User } from "../../models/user.model";
 import { signUpUserThunk } from "../../store/thunk/users.thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { LoadingButton } from "@mui/lab";
 
 
 
@@ -24,9 +25,12 @@ const SignUpForm: React.FC = () => {
         mode: 'onChange',
         resolver: yupResolver(schema)
     })
+    const signUpSuccess = () => {
+        navigate('/login?referer=sign-up', { replace: true })
+    }
     const onSubmit = (data: any) => {
-        dispatch(signUpUserThunk(data))
-        //navigate('/login?referer=sign-up', { replace: true })
+        dispatch(signUpUserThunk(data, signUpSuccess, () => { }))
+
     }
     const onSubmitError = (data: any) => {
         console.log('On Submit Error => ', data)
@@ -73,7 +77,7 @@ const SignUpForm: React.FC = () => {
                         </IconButton>
                     </InputAdornment>
                 }} />
-                <Button type="submit" disabled={!isValid} fullWidth variant="contained" className="secondary-button" >Register</Button>
+                <LoadingButton loading={usersLoading} loadingPosition="start" type="submit" disabled={!isValid} fullWidth variant="contained" className="secondary-button" >Register</LoadingButton>
             </form>
             <p style={{ textAlign: 'center' }}>OR</p>
             <Button variant="contained" className="primary-button" fullWidth onClick={onLoginClick}>Login</Button>

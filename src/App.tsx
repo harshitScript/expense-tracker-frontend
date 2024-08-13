@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom"
 import Layout1 from './components/layout/Layout1';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import { Toaster } from 'react-hot-toast';
 
 const App: React.FC = () => {
   return <>
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route path='/sign-up' element={<SignUpPage />} />
       </Routes>
     </Layout1>
+    <Toaster position='top-center' />
   </>
 }
 
