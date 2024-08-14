@@ -8,6 +8,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import validationSchema from "../../validationSchema/loginFormSchema";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../store/hook";
+import { loginThunk } from "../../store/thunk/auth.thunk";
+import { LoginResponse } from "../../models/auth.model";
+import { setLoginData } from "../../store/slice/auth.slice";
+import toast from "react-hot-toast";
 
 interface FormFields {
     email: string;
@@ -15,16 +20,24 @@ interface FormFields {
 }
 const LoginForm: React.FC = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const [passwordVisible, togglePasswordVisibility] = useToggle(false);
     const { register, handleSubmit, formState: { errors } } = useForm<FormFields>({
         mode: 'onBlur',
         resolver: yupResolver(validationSchema)
     });
-    const onSubmit = async (data: any) => {
-        console.log('Submit Executed', data)
+    const loginSuccess = (data: LoginResponse) => {
+        dispatch(setLoginData({ userId: data.userId, authToken: data.authToken }));
+        localStorage.userId = data.userId;
+        localStorage.authToken = data.authToken;
+        navigate('/dashboard', { replace: true });
+        toast.success('User Login Successful.')
     }
-    const onSubmitError = (data: any) => {
-        console.log('Submit Error Executed', data)
+    const onSubmit = async (data: any) => {
+        dispatch(loginThunk(data, loginSuccess, () => { }));
+    }
+    const onSubmitError = () => {
+        toast.error('Login Failed! Please Retry.')
     }
     const onRegisterClick = () => {
         navigate('/sign-up');
