@@ -3,7 +3,6 @@ import styles from "./LoginForm.module.css"
 import { Button, Card, CardContent, IconButton, InputAdornment, OutlinedInput, TextField, FormControl, FormHelperText } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import useToggle from "../../customHooks/useToggle";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import validationSchema from "../../validationSchema/loginFormSchema";
@@ -13,6 +12,7 @@ import { loginThunk } from "../../store/thunk/auth.thunk";
 import { LoginResponse } from "../../models/auth.model";
 import { setLoginData } from "../../store/slice/auth.slice";
 import toast from "react-hot-toast";
+import useToggle from "../../hooks/useToggle";
 
 interface FormFields {
     email: string;
@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
         dispatch(setLoginData({ userId: data.userId, authToken: data.authToken }));
         localStorage.userId = data.userId;
         localStorage.authToken = data.authToken;
-        navigate('/dashboard', { replace: true });
+        window.location.pathname = '/dashboard';
         toast.success('User Login Successful.')
     }
     const onSubmit = async (data: any) => {

@@ -1,7 +1,6 @@
 import { Button, Card, CardContent, IconButton, InputAdornment, TextField } from "@mui/material";
 import React, { useState } from "react";
 import styles from "./SignUpForm.module.css"
-import useToggle from "../../customHooks/useToggle";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,6 +11,7 @@ import { signUpUserThunk } from "../../store/thunk/users.thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { LoadingButton } from "@mui/lab";
 import toast from "react-hot-toast";
+import useToggle from "../../hooks/useToggle";
 
 
 
