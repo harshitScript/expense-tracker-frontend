@@ -11,6 +11,7 @@ import { User } from "../../models/user.model";
 import { signUpUserThunk } from "../../store/thunk/users.thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { LoadingButton } from "@mui/lab";
+import toast from "react-hot-toast";
 
 
 
@@ -26,14 +27,15 @@ const SignUpForm: React.FC = () => {
         resolver: yupResolver(schema)
     })
     const signUpSuccess = () => {
+        toast.success('User Registered Successfully.');
         navigate('/login?referer=sign-up', { replace: true })
     }
     const onSubmit = (data: any) => {
         dispatch(signUpUserThunk(data, signUpSuccess, () => { }))
 
     }
-    const onSubmitError = (data: any) => {
-        console.log('On Submit Error => ', data)
+    const onSubmitError = () => {
+        toast.error('Registration Failed. Please Retry!')
     }
     const checkPasswordMatched = () => {
         const password = watch('password');
