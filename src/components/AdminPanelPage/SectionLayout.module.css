@@ -1,0 +1,10 @@
+.section_layout_title{
+    text-align: center;
+}
+.section_layout_section{
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}

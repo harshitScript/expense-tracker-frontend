@@ -1,0 +1,10 @@
+.admin_panel_page_outer {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: 90vh;
+}
+
+.admin_panel_page_section{
+    box-sizing: border-box;
+    padding: 0.5rem;
+}

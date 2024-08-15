@@ -8,6 +8,8 @@ import useAuth from './hooks/useAuth';
 import DashboardPage from './pages/DashboardPage';
 import { useAppDispatch } from './store/hook';
 import { getUserByIdThunk } from './store/thunk/users.thunk';
+import AdminPanelPage from './pages/AdminPanelPage';
+import CategoriesPage from './pages/CategoriesPage';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,10 +19,12 @@ const App: React.FC = () => {
   return <>
     <Layout1>
       <Routes>
-        <Route path='/' element={<Navigate to='/login' replace />} />
+        <Route path='/' element={<Navigate to={isAuthenticated ? 'dashboard' : '/login'} replace />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/dashboard' element={isAuthenticated ? <DashboardPage /> : <Navigate to='/' replace />} />
+        <Route path='/admin-panel' element={isAuthenticated ? <AdminPanelPage /> : <Navigate to='/' replace />} />
+        <Route path='/admin-panel/categories' element={isAuthenticated ? <CategoriesPage /> : <Navigate to='/' replace />} />
       </Routes>
     </Layout1>
     <Toaster position='top-center' />
