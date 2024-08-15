@@ -1,6 +1,6 @@
 import API from "../../API"
 import { User } from "../../models/user.model";
-import { setUsersLoading } from "../slice/users.slice"
+import { setUser, setUsersLoading } from "../slice/users.slice"
 import { AppThunk } from "../types";
 import handleError from "../../utils/handleError";
 
@@ -19,3 +19,15 @@ export const signUpUserThunk = (body: User, successCallBack: () => void, failure
         dispatch(setUsersLoading(false));
     }
 }
+
+export const getUserByIdThunk = (userId: string): AppThunk => async (dispatch) => {
+    dispatch(setUsersLoading(true));
+    try {
+        const response = await API.get<{ user: User }>(`/user/getUserById/${userId}`);
+        dispatch(setUsersLoading(false));
+        dispatch(setUser(response.data.user));
+    } catch (error) {
+        handleError(error);
+        dispatch(setUsersLoading(false));
+    }
+} 
