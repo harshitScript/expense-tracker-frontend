@@ -1,0 +1,10 @@
+.category_page_outer {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 90vh;
+}
+
+.category_page_section {
+    box-sizing: border-box;
+    padding: 1rem;
+}

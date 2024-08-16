@@ -1,0 +1,10 @@
+.category_card_title {
+    box-sizing: border-box;
+    padding: 0.5rem !important;
+}
+
+.category_card_description {
+    box-sizing: border-box;
+    padding: 0.5rem !important;
+    color: grey;
+}
