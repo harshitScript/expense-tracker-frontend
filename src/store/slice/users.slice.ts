@@ -18,10 +18,13 @@ const usersSlice = createSlice({
         },
         setUser(state, action: PayloadAction<User>) {
             state.user = action.payload;
+        },
+        clearUsersData(state) {
+            state = initialState
         }
     }
 })
 
-export const { setUsersLoading, setUser } = usersSlice.actions;
+export const { setUsersLoading, setUser, clearUsersData } = usersSlice.actions;
 
 export default usersSlice;

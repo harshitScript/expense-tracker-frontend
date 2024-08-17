@@ -21,10 +21,13 @@ const authSlice = createSlice({
             state.userId = action.payload.userId;
             state.authToken = action.payload.authToken;
             state.authTokenExpiry = action.payload.authTokenExpiry
+        },
+        clearAuthData(state) {
+            state = initialState;
         }
     }
 })
 
-export const { setAuthLoading, setLoginData } = authSlice.actions;
+export const { setAuthLoading, setLoginData, clearAuthData } = authSlice.actions;
 
 export default authSlice;

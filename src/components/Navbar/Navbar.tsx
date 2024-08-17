@@ -3,6 +3,7 @@ import styles from './Navbar.module.css';
 import ExpenseLogo from '../../assets/svg/expense-tracker-logo.svg'
 import GoBack from "../GoBackButton";
 import AdminPanelButton from "../AdminPanelButton";
+import LogoutButton from "../LogoutButton";
 
 const Navbar: React.FC = () => {
     return <div className={styles.navbar_outer}>
@@ -11,6 +12,8 @@ const Navbar: React.FC = () => {
             <AdminPanelButton />
             &nbsp;&nbsp;
             <GoBack />
+            &nbsp;&nbsp;
+            <LogoutButton />
         </div>
     </div>
 }

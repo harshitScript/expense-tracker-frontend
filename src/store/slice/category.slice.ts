@@ -15,10 +15,13 @@ const categorySlice = createSlice({
         },
         setCategories(state, action: PayloadAction<Category[]>) {
             state.categories = [...action.payload];
+        },
+        clearCategoryData(state) {
+            state = initialState;
         }
     }
 })
 
-export const { setCategories, setCategoriesLoading } = categorySlice.actions;
+export const { setCategories, setCategoriesLoading, clearCategoryData } = categorySlice.actions;
 
 export default categorySlice
