@@ -5,9 +5,10 @@ interface AuthSlice {
     authLoading: boolean;
     userId: string,
     authToken: string,
+    authTokenExpiry: number
 }
 
-const initialState: AuthSlice = { authLoading: false, userId: '', authToken: '' }
+const initialState: AuthSlice = { authLoading: false, userId: '', authToken: '', authTokenExpiry: 0 }
 
 const authSlice = createSlice({
     name: 'auth',
@@ -16,9 +17,10 @@ const authSlice = createSlice({
         setAuthLoading(state, action: PayloadAction<boolean>) {
             state.authLoading = action.payload
         },
-        setLoginData(state, action: PayloadAction<{ userId: string, authToken: string }>) {
+        setLoginData(state, action: PayloadAction<{ userId: string, authToken: string, authTokenExpiry: number }>) {
             state.userId = action.payload.userId;
             state.authToken = action.payload.authToken;
+            state.authTokenExpiry = action.payload.authTokenExpiry
         }
     }
 })

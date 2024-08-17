@@ -4,5 +4,5 @@ export interface Login {
 }
 
 export interface LoginResponse {
-    message: string, userId: string, authToken: string
+    message: string, userId: string, authToken: string, authTokenExpiry: number
 }

@@ -27,9 +27,10 @@ const LoginForm: React.FC = () => {
         resolver: yupResolver(validationSchema)
     });
     const loginSuccess = (data: LoginResponse) => {
-        dispatch(setLoginData({ userId: data.userId, authToken: data.authToken }));
+        dispatch(setLoginData({ userId: data.userId, authToken: data.authToken, authTokenExpiry: data.authTokenExpiry }));
         localStorage.userId = data.userId;
         localStorage.authToken = data.authToken;
+        localStorage.authTokenExpiry = data.authTokenExpiry;
         window.location.pathname = '/dashboard';
         toast.success('User Login Successful.')
     }
