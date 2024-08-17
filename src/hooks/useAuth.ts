@@ -1,3 +1,5 @@
+import forceLogout from "../utils/forceLogout";
+
 interface useAuthReturnType {
     isAuthenticated: boolean,
     userId: string;
@@ -6,10 +8,12 @@ interface useAuthReturnType {
 
 const useAuth = (): useAuthReturnType => {
     const userId = localStorage.userId;
-    const clearAuthState = () => {
-        localStorage.clear();
+    if (localStorage.authToken && localStorage.userId && localStorage.authTokenExpiry) {
+        const currentTime = new Date().getTime();
+        if (currentTime > localStorage.authTokenExpiry) forceLogout();
     }
-    return { isAuthenticated: !!userId, userId, clearAuthState }
+    const clearAuthState = () => localStorage.clear();
+    return { isAuthenticated: !!userId, userId, clearAuthState };
 }
 
 export default useAuth;

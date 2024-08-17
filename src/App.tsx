@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated } = useAuth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { dispatch(getUserByIdThunk(localStorage.userId)) }, [])
+  useEffect(() => { localStorage.userId && dispatch(getUserByIdThunk(localStorage.userId)) }, [])
   return <>
     <Layout1>
       <Routes>
