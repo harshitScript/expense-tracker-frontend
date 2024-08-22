@@ -4,6 +4,7 @@ import authSlice from "./slice/auth.slice";
 import categorySlice from "./slice/category.slice";
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import storageSession from "redux-persist/lib/storage/session";
+import expenseSlice from "./slice/expense.slice";
 
 const persistConfig = {
     key: 'root',
@@ -13,7 +14,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     [authSlice.name]: authSlice.reducer,
     [usersSlice.name]: usersSlice.reducer,
-    [categorySlice.name]: categorySlice.reducer
+    [categorySlice.name]: categorySlice.reducer,
+    [expenseSlice.name]: expenseSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
